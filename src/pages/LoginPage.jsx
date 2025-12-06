@@ -5,6 +5,7 @@ import axios from "axios";
 // Strong password: 6–16, upper, lower, digit, special (@#$%?)
 const strongPasswordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%?])[A-Za-z\d@#$%?]{6,16}$/;
+const API_BASE_URL = "https://netflix-backend-7e4r.onrender.com";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ const LoginPage = () => {
       setLoading(true);
       setServerError("");
 
-      const res = await axios.post("http://localhost:5000/api/login", form);
+       const res = await axios.post(`${API_BASE_URL}/api/login`, form);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userEmail", res.data.user.email);
